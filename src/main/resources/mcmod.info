@@ -1,0 +1,16 @@
+[
+{
+  "modid": "worldstagescompat",
+  "name": "Worldstages Compat",
+  "description": "Addon for Worldstages and Gamestages, allows accessing worldstages with Gamestages API",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/Blue-Beaker/worldstagescompat-mod",
+  "updateUrl": "",
+  "authorList": ["Blue_Beaker"],
+  "credits": "",
+  "logoFile": "banner.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
