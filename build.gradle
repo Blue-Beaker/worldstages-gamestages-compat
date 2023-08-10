@@ -67,7 +67,8 @@ dependencies {
 
     compile "net.darkhax.gamestages:GameStages-1.12.2:${version_gamestages}"
     compile "net.darkhax.bookshelf:Bookshelf-1.12.2:${version_bookshelf}"
-    compile "io.bluebeaker.worldstages:worldstages-1.0:sources"
+    compile "io.bluebeaker.worldstages:worldstages-mc1.12.2-1.0"
+
     // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
 
