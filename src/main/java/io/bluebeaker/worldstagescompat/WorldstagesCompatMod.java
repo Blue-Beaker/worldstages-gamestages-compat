@@ -35,15 +35,17 @@ public class WorldstagesCompatMod
     }
     @SubscribeEvent
     public void onAddStage(GameStageEvent.Add event){
-        if(ConfigStorage.instance.RegisteredStages.contains(event.getStageName()))
-        WorldStagesSavedData.get(event.getEntityPlayer().world).addStage(event.getStageName());
-        event.setCanceled(true);
+        if(ConfigStorage.instance.RegisteredStages.contains(event.getStageName())){
+            WorldStagesSavedData.get(event.getEntityPlayer().world).addStage(event.getStageName());
+            event.setCanceled(true);
+        }
     }
     @SubscribeEvent
     public void onRemoveStage(GameStageEvent.Remove event){
-        if(ConfigStorage.instance.RegisteredStages.contains(event.getStageName()))
-        WorldStagesSavedData.get(event.getEntityPlayer().world).removeStage(event.getStageName());
-        event.setCanceled(true);
+        if(ConfigStorage.instance.RegisteredStages.contains(event.getStageName())){
+            WorldStagesSavedData.get(event.getEntityPlayer().world).removeStage(event.getStageName());
+            event.setCanceled(true);
+        }
     }
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event){
