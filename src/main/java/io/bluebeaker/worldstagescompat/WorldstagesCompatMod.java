@@ -1,12 +1,19 @@
 package io.bluebeaker.worldstagescompat;
 import net.darkhax.gamestages.event.GameStageEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.TextComponentBase;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+
 import org.apache.logging.log4j.Logger;
 
 import io.bluebeaker.worldstages.WorldStagesSavedData;
@@ -53,10 +60,17 @@ public class WorldstagesCompatMod
     }
     @SubscribeEvent
     public void onStageChanged(WorldStageEvent event){
-        if(this.server!=null){
+        if(!event.getWorld().isRemote){
             for(EntityPlayerMP player: server.getPlayerList().getPlayers()){
                 MinecraftForge.EVENT_BUS.post(new GameStageEvent(player, event.laststage));
             }
+        }
+    }
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onClientStageChanged(WorldStageEvent event){
+        if(event.getWorld().isRemote){
+            MinecraftForge.EVENT_BUS.post(new GameStageEvent(Minecraft.getMinecraft().player, event.laststage));
         }
     }
 }

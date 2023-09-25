@@ -2,5 +2,6 @@
     "java.import.gradle.java.home": "/usr/lib/jvm/java-8-openjdk-amd64",
     "java.compile.nullAnalysis.mode": "automatic",
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.import.gradle.user.home": "/mnt/G/Minecraft/.gradle_forge112"
+    "java.import.gradle.user.home": "/mnt/G/Minecraft/.gradle_forge112",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable"
 }
