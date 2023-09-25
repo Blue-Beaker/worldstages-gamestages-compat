@@ -9,10 +9,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Collections;
+
+import io.bluebeaker.worldstages.ConfigStorage;
 import io.bluebeaker.worldstages.StageChecker;
 import net.darkhax.bookshelf.util.NBTUtils;
 import net.darkhax.gamestages.data.StageData;
@@ -31,12 +32,17 @@ public abstract class mixinStageData {
     public void hasStage(@Nonnull final String stage,CallbackInfoReturnable<Boolean> cir){
         cir.setReturnValue(cir.getReturnValue()||StageChecker.instance.stages.contains(stage));
     }
+    /**
+     * @author Blue_Beaker
+     * @reason Dont save stages managed by worldstages to gamestages data
+     */
     @Overwrite(remap = false)
     public NBTTagCompound writeToNBT(){
         final NBTTagCompound tag = new NBTTagCompound();
         Collection<String> stages = new HashSet<String>();
         stages.addAll(((StageData)(Object)this).getStages());
-        stages.removeAll(StageChecker.instance.stages);
+        stages.removeAll(StageChecker.instance.stages);             //Exclude active worldstages
+        stages.removeAll(ConfigStorage.instance.RegisteredStages);  //Exclude registered worldstages
         tag.setTag(StageData.TAG_STAGES, NBTUtils.writeCollection(stages, stage -> stage));
         return tag;
     }

@@ -1,19 +1,14 @@
 package io.bluebeaker.worldstagescompat;
 import net.darkhax.gamestages.GameStageHelper;
 import net.darkhax.gamestages.event.GameStageEvent;
-import net.darkhax.gamestages.event.StagesSyncedEvent;
-import net.darkhax.gamestages.proxy.GameStagesClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.text.TextComponentBase;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -43,6 +38,9 @@ public class WorldstagesCompatMod
         if(WorldStagesSavedData.get(event.getEntityPlayer().world).getStages().contains(event.getStageName()))
         event.setHasStage(true);
     }
+    /**
+     * When changing registered worldstages in gamestages, change corresponding worldstages instead. 
+     */
     @SubscribeEvent
     public void onAddStage(GameStageEvent.Add event){
         if(ConfigStorage.instance.RegisteredStages.contains(event.getStageName())){
@@ -54,7 +52,7 @@ public class WorldstagesCompatMod
     public void onRemoveStage(GameStageEvent.Remove event){
         if(ConfigStorage.instance.RegisteredStages.contains(event.getStageName())){
             WorldStagesSavedData.get(event.getEntityPlayer().world).removeStage(event.getStageName());
-            event.setCanceled(true);
+            // event.setCanceled(true);
         }
     }
     @EventHandler
