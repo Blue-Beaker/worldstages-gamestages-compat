@@ -1,5 +1,8 @@
 package io.bluebeaker.worldstagescompat;
+import net.darkhax.gamestages.GameStageHelper;
 import net.darkhax.gamestages.event.GameStageEvent;
+import net.darkhax.gamestages.event.StagesSyncedEvent;
+import net.darkhax.gamestages.proxy.GameStagesClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
@@ -60,9 +63,10 @@ public class WorldstagesCompatMod
     }
     @SubscribeEvent
     public void onStageChanged(WorldStageEvent event){
-        if(!event.getWorld().isRemote){
+        if(!event.getWorld().isRemote && this.server!=null){
             for(EntityPlayerMP player: server.getPlayerList().getPlayers()){
                 MinecraftForge.EVENT_BUS.post(new GameStageEvent(player, event.laststage));
+                GameStageHelper.syncPlayer(player);
             }
         }
     }

@@ -1,6 +1,7 @@
 package io.bluebeaker.worldstagescompat.mixin;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 
 import javax.annotation.Nonnull;
@@ -20,7 +21,7 @@ public abstract class mixinFakePlayerData {
         Collection<String> list1 = new HashSet<String>();
         list1.addAll(cir.getReturnValue());
         list1.addAll(StageChecker.instance.stages);
-        cir.setReturnValue(list1);
+        cir.setReturnValue(Collections.unmodifiableCollection(list1));
     }
     @Inject(method = "hasStage",remap = false,cancellable = true,at = @At("RETURN"))
     public void hasStage(@Nonnull final String stage,CallbackInfoReturnable<Boolean> cir){
