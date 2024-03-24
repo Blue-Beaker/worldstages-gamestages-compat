@@ -128,9 +128,13 @@ dependencies {
     implementation rfg.deobf("CraftTweaker2:CraftTweaker2-MC1120-Main:${version_crafttweaker}")
     implementation rfg.deobf("net.darkhax.gamestages:GameStages-1.12.2:${version_gamestages}")
     implementation rfg.deobf("net.darkhax.itemstages:ItemStages-1.12.2:2.0.51")
-    implementation rfg.deobf("com.blamejared:RecipeStages:1.1.3.8")
+    implementation rfg.deobf("com.blamejared:RecipeStages-1.1.3.8")
     implementation rfg.deobf("net.darkhax.bookshelf:Bookshelf-1.12.2:${version_bookshelf}")
     implementation rfg.deobf("io.bluebeaker.worldstages:worldstages-mc1.12.2-1.0")
+
+    implementation rfg.deobf("mezz.jei:jei_1.12.2:4.16.1.302")      
+    implementation rfg.deobf("buildcraft:buildcraft-all-7.99.24.8")  //Add buildcraft to test automation with staged recipes
+
     if (project.use_mixins.toBoolean()) {
         // Change your mixin refmap name here:
         String mixin = modUtils.enableMixins('org.spongepowered:mixin:0.8.3', "mixins.${project.archives_base_name}.refmap.json")
