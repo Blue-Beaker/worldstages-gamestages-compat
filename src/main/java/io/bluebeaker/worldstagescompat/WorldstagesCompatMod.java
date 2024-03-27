@@ -5,6 +5,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.common.config.Config.Type;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -73,6 +76,13 @@ public class WorldstagesCompatMod
     public void onClientStageChanged(WorldStageEvent event){
         if(event.getWorld().isRemote){
             MinecraftForge.EVENT_BUS.post(new GameStageEvent(Minecraft.getMinecraft().player, event.laststage));
+        }
+    }
+
+    @SubscribeEvent
+    public void onConfigChangedEvent(OnConfigChangedEvent event) {
+        if (event.getModID().equals(MODID)) {
+            ConfigManager.sync(MODID, Type.INSTANCE);
         }
     }
 }

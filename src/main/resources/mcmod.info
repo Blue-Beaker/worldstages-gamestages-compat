@@ -11,6 +11,6 @@
   "credits": "",
   "logoFile": "banner.png",
   "screenshots": [],
-  "dependencies": ["worldstages","gamestages","mixinbooter"]
+  "dependencies": ["worldstages","gamestages>=2.0.123","mixinbooter>=7.1"]
 }
 ]
