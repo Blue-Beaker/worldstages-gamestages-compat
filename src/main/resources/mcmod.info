@@ -5,7 +5,7 @@
   "description": "Addon for Worldstages and Gamestages, allows accessing worldstages with Gamestages API",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "https://github.com/Blue-Beaker/worldstagescompat-mod",
+  "url": "https://github.com/Blue-Beaker/worldstages-gamestages-compat",
   "updateUrl": "",
   "authorList": ["Blue_Beaker"],
   "credits": "",
