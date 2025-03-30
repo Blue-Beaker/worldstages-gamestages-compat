@@ -25,9 +25,9 @@ import io.bluebeaker.worldstages.WorldStageEvent;
 @Mod(modid = WorldstagesCompatMod.MODID, name = WorldstagesCompatMod.NAME, version = WorldstagesCompatMod.VERSION)
 public class WorldstagesCompatMod
 {
-    public static final String MODID = "worldstagescompat";
-    public static final String NAME = "Worldstages Compat";
-    public static final String VERSION = "1.0";
+    public static final String MODID = Tags.MOD_ID;
+    public static final String NAME = Tags.MOD_NAME;
+    public static final String VERSION = Tags.VERSION;
     
     public MinecraftServer server;
 
@@ -39,7 +39,7 @@ public class WorldstagesCompatMod
     @SubscribeEvent
     public void onCheckStage(GameStageEvent.Check event){
         if(WorldStagesSavedData.get(event.getEntityPlayer().world).getStages().contains(event.getStageName()))
-        event.setHasStage(true);
+            event.setHasStage(true);
     }
     /**
      * When changing registered worldstages in gamestages, change corresponding worldstages instead. 
